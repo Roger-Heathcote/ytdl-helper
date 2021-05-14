@@ -1,0 +1,4 @@
+state = {
+	"placeholder": "minge",
+	"job": {}
+}
