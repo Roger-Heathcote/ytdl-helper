@@ -7,14 +7,14 @@ from time import sleep
 import re
 import sys
 
-stdscr = curses.initscr()
-curses.noecho()
-curses.cbreak()
-stdscr.keypad(True)
-stdscr.nodelay(True)
-curses.curs_set(0)
-
 def display_loop(*args):
+
+    stdscr = curses.initscr()
+    curses.noecho()
+    curses.cbreak()
+    stdscr.keypad(True)
+    stdscr.nodelay(True)
+    curses.curs_set(0)
 
     verbose = False
 
@@ -44,9 +44,12 @@ def display_loop(*args):
                         out = "Running."
                 stdscr.addstr(idx+1, 0, out)
 
+            if verbose:
+                stdscr.addstr(rows-1, cols-4, "(v)")
+
             try:
                 key = stdscr.getkey()
-                stdscr.addstr(rows-1, 0, f"Key pressed: {key}")
+                stdscr.addstr(rows-1, 0, "processing")
                 if key in "Qq":
                     return
                 else:
@@ -76,5 +79,6 @@ def display_loop(*args):
         return
 
 def display():
+    sleep(2) # So we have time to see any startup console messages/errors.
     curses.wrapper(display_loop)
     _thread.interrupt_main()

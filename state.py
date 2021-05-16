@@ -1,4 +1,3 @@
 state = {
-	"placeholder": "minge",
 	"job": {}
 }
