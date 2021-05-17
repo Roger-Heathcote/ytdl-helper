@@ -1,3 +1,4 @@
 state = {
+	"verbose": False,
 	"job": {}
 }

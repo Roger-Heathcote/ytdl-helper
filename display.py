@@ -6,6 +6,7 @@ import datetime
 from time import sleep
 import re
 import sys
+import settings
 
 def display_loop(*args):
 
@@ -25,7 +26,7 @@ def display_loop(*args):
             rows, cols = stdscr.getmaxyx()
             stdscr.clear()
 
-            out = f"We have {len(state['job'])} jobs."
+            out = f"Serving on port: {settings.port} :: {len(state['job'])} jobs."
             stdscr.addstr(0, 0, out)
 
             now = datetime.datetime.now().strftime("%H:%M:%S")

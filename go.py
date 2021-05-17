@@ -1,23 +1,30 @@
-import state
+#!/usr/bin/python3
+from state import state
 import settings
 from serve import serve
 from display import display
 import threading
+import argparse
 
 if __name__ == '__main__':
 
-	from sys import argv
+	parser = argparse.ArgumentParser(description="Multithreading youtube-dl helper")
+	parser.add_argument("-nd","--no-display", help="Don't start curses display.", action="store_true")
+	parser.add_argument("-v","--verbose", help="Log http activity to the console.", action="store_true")
+	parser.add_argument("port", nargs="?", default=7777, type=int)
+	args = parser.parse_args()
 
-	display_thread = threading.Thread(target=display, args=())
-	# # thread.daemon = True
-	display_thread.start()
-	print ("Starting curses display...")
+	settings.port = args.port
+
+	if(args.no_display == False):
+		display_thread = threading.Thread(target=display, args=())
+		display_thread.start()
+	else:
+		print("Non-curses interface. CTRL-C to quit.")
+
+	state["verbose"] = args.verbose
 
 	try:
-		if len(argv) == 2:
-			serve(port=int(argv[1]))
-		else:
-			serve()
-
+		serve(port=args.port)
 	except KeyboardInterrupt:
-		pass
+		print("Keyboard interrupt, quitting...")

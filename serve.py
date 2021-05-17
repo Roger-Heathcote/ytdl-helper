@@ -2,12 +2,10 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from time import gmtime, strftime
 from callback import callback
 import threading
-# from display import display
 from state import state
 
-QUIET=True
 def prn(*args):
-    if not(QUIET): print (*args)
+    if state["verbose"]: print (*args)
 
 class Handler(BaseHTTPRequestHandler):
 
@@ -65,16 +63,13 @@ class Handler(BaseHTTPRequestHandler):
         thread.daemon = True
         thread.start()  
 
-def serve(port=7777, quiet=True):
-    QUIET=quiet
+def serve(port=7777, verbose=False):
     server_address = ('', port)
     httpd = HTTPServer(server_address, Handler)
     prn("Starting server on port", port)
     httpd.serve_forever()
-    prn("OK")
 
 if __name__ == '__main__':
-    QUIET=False
     from sys import argv
     if len(argv) == 2:
         serve(port=int(argv[1]))
