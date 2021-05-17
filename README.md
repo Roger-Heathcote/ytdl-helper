@@ -7,3 +7,15 @@ Usage: ./go.py [optional: A PORT NUMBER]
 *--nd flag* disables the curses display
 
 Don't use both flags together, unless you thrive on chaos.
+
+---
+
+Settings...
+
+Put this in a file called settings.py...
+
+```python
+settings = {}
+settings['port'] = "undefined"
+settings['output folder'] = "PATH TO THE FOLDER YOU WANT YOUR FILES SAVING IN"
+```
