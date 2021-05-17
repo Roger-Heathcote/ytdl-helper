@@ -17,5 +17,7 @@ Put this in a file called settings.py...
 ```python
 settings = {}
 settings['port'] = "undefined"
-settings['output folder'] = "PATH TO THE FOLDER YOU WANT YOUR FILES SAVING IN"
+settings['output folder'] = "PATH TO THE FOLDER YOU WANT YOUR FILES SAVING IN/"
 ```
+
+Do not forget the trailing slash when specifying a path name!
