@@ -33,10 +33,10 @@ def display_loop(*args):
             stdscr.addstr(0, cols-len(now), now)
 
             for idx, thread_id in enumerate(state["job"]):
-                job_state = state["job"][thread_id]
+                job_state = state["job"][thread_id]["display"] or "..."
+                job_domain = state["job"][thread_id]["domain"] or ""
                 if verbose:
-                    # Display domain?
-                    out = str(thread_id)[-4:] + ": " + job_state 
+                    out = domain + ": " + job_state 
                 else:
                     percentage = re.search('[0-9\.]{1,5}%', job_state)
                     if(percentage):
@@ -62,7 +62,7 @@ def display_loop(*args):
                     pass
 
             stdscr.refresh()
-            sleep(0.5)
+            sleep(0.25)
 
     except BaseException as error:
         print('An exception occurred: {}'.format(error))

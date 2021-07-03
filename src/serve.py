@@ -61,7 +61,7 @@ class Handler(BaseHTTPRequestHandler):
         args = { 'protocol': "POST", 'auth':auth, 'data':data, 'ip':ip }
         thread = threading.Thread(target=callback, args=(args,))
         thread.daemon = True
-        thread.start()  
+        thread.start()
 
 def serve(port=7777, verbose=False):
     server_address = ('', port)
