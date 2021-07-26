@@ -36,7 +36,7 @@ def display_loop(*args):
                 job_state = state["job"][thread_id]["display"] or "..."
                 job_domain = state["job"][thread_id]["domain"] or ""
                 if verbose:
-                    out = domain + ": " + job_state 
+                    out = job_domain + ": " + job_state 
                 else:
                     percentage = re.search('[0-9\.]{1,5}%', job_state)
                     if(percentage):
